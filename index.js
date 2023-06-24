@@ -57,57 +57,57 @@ async function run() {
     const contactCollection = client
       .db("customize-shopper-bd")
       .collection("contact");
-    const paymentCollection = client
-      .db("customize-shopper-bd")
-      .collection("payment");
+    // const paymentCollection = client
+    //   .db("customize-shopper-bd")
+    //   .collection("payment");
 
 
     // bkash payment getaway integrate
 
-    // পেমেন্ট তৈরি করতে ব্যবহার হবেঃ createPayment API
-    app.post('/create', (req, res) => {
-      const paymentRequest = req.body;
-      console.log('paymentRequest', paymentRequest)
-      // আপনার পেমেন্ট আইডি ও অন্যান্য পেমেন্ট তথ্য তৈরি করুন
-      const paymentID = 'PAYMENT_ID'; // পেমেন্ট আইডি তৈরি করুন
-      const createTime = 'CREATE_TIME';
-      const orgLogo = 'ORG_LOGO';
-      const orgName = 'ORG_NAME';
-      const transactionStatus = 'TRANSACTION_STATUS';
-      const amount = 'AMOUNT';
-      const currency = 'CURRENCY';
-      const intent = 'INTENT';
-      const merchantInvoiceNumber = 'INVOICE_NUMBER';
+    // // পেমেন্ট তৈরি করতে ব্যবহার হবেঃ createPayment API
+    // app.post('/create', (req, res) => {
+    //   const paymentRequest = req.body;
+    //   console.log('paymentRequest', paymentRequest)
+    //   // আপনার পেমেন্ট আইডি ও অন্যান্য পেমেন্ট তথ্য তৈরি করুন
+    //   const paymentID = 'PAYMENT_ID'; // পেমেন্ট আইডি তৈরি করুন
+    //   const createTime = 'CREATE_TIME';
+    //   const orgLogo = 'ORG_LOGO';
+    //   const orgName = 'ORG_NAME';
+    //   const transactionStatus = 'TRANSACTION_STATUS';
+    //   const amount = 'AMOUNT';
+    //   const currency = 'CURRENCY';
+    //   const intent = 'INTENT';
+    //   const merchantInvoiceNumber = 'INVOICE_NUMBER';
 
-      const paymentData = {
-        paymentID,
-        createTime,
-        orgLogo,
-        orgName,
-        transactionStatus,
-        amount,
-        currency,
-        intent,
-        merchantInvoiceNumber,
-      };
+    //   const paymentData = {
+    //     paymentID,
+    //     createTime,
+    //     orgLogo,
+    //     orgName,
+    //     transactionStatus,
+    //     amount,
+    //     currency,
+    //     intent,
+    //     merchantInvoiceNumber,
+    //   };
 
-      // পেমেন্ট ডেটা প্রেরণ করুন
-      res.json(paymentData);
-    });
+    //   // পেমেন্ট ডেটা প্রেরণ করুন
+    //   res.json(paymentData);
+    // });
 
-    // পেমেন্ট সম্পন্ন করার জন্য ব্যবহার হবেঃ executePayment API
-    app.post('/execute/:paymentID', (req, res) => {
-      const { paymentID } = req.params;
+    // // পেমেন্ট সম্পন্ন করার জন্য ব্যবহার হবেঃ executePayment API
+    // app.post('/execute/:paymentID', (req, res) => {
+    //   const { paymentID } = req.params;
 
-      // আপনার পেমেন্ট সম্পন্ন করার জন্য যা করতে হবে তা এখানে লিখুন
-      // সম্পন্ন পেমেন্ট ডেটা প্রেরণ করুন বা কোন এরর থ্রো করুন
-      const paymentData = {
-        status: 'success',
-        message: 'Payment executed successfully',
-      };
+    //   // আপনার পেমেন্ট সম্পন্ন করার জন্য যা করতে হবে তা এখানে লিখুন
+    //   // সম্পন্ন পেমেন্ট ডেটা প্রেরণ করুন বা কোন এরর থ্রো করুন
+    //   const paymentData = {
+    //     status: 'success',
+    //     message: 'Payment executed successfully',
+    //   };
 
-      res.json(paymentData);
-    });
+    //   res.json(paymentData);
+    // });
 
 
     // ---------all api create--------
@@ -346,109 +346,9 @@ async function run() {
         })
       }
     });
-    app.delete("/readyMade/:id", async (req, res) => {
-      const id = req.params.id;
-      const filter = { _id: new ObjectId(id) };
-      await productsCollection.deleteOne(filter);
-      await readyMadeCollection.deleteOne(filter);
-      res.status(200).json({
-        status: "success",
-        message: "successfully delete your product!✅"
-      })
-    });
-    app.delete("/customize/:id", async (req, res) => {
-      const id = req.params.id;
-      const filter = { _id: new ObjectId(id) };
-      await productsCollection.deleteOne(filter);
-      await customizeCollection.deleteOne(filter);
-      res.status(200).json({
-        status: "success",
-        message: "successfully delete your product!✅"
-      })
-    });
-    app.delete("/silicon/:id", async (req, res) => {
-      const id = req.params.id;
-      const filter = { _id: new ObjectId(id) };
-      await productsCollection.deleteOne(filter);
-      await siliconCollection.deleteOne(filter);
-      res.status(200).json({
-        status: "success",
-        message: "successfully delete your product!✅"
-      })
-    });
-    app.delete("/hard/:id", async (req, res) => {
-      const id = req.params.id;
-      const filter = { _id: new ObjectId(id) };
-      await productsCollection.deleteOne(filter);
-      await hardCollection.deleteOne(filter);
-      res.status(200).json({
-        status: "success",
-        message: "successfully delete your product!✅"
-      })
-    });
-    app.delete("/twoD/:id", async (req, res) => {
-      const id = req.params.id;
-      const filter = { _id: new ObjectId(id) };
-      await productsCollection.deleteOne(filter);
-      await twoDCollection.deleteOne(filter);
-      res.status(200).json({
-        status: "success",
-        message: "successfully delete your product!✅"
-      })
-    });
-    app.delete("/water-port/:id", async (req, res) => {
-      const id = req.params.id;
-      const filter = { _id: new ObjectId(id) };
-      await productsCollection.deleteOne(filter);
-      await waterPortCollection.deleteOne(filter);
-      res.status(200).json({
-        status: "success",
-        message: "successfully delete your product!✅"
-      })
-    });
-    app.delete("/wallet/:id", async (req, res) => {
-      const id = req.params.id;
-      const filter = { _id: new ObjectId(id) };
-      await productsCollection.deleteOne(filter);
-      await walletCollection.deleteOne(filter);
-      res.status(200).json({
-        status: "success",
-        message: "successfully delete your product!✅"
-      })
-    });
-    app.delete("/t-shirt/:id", async (req, res) => {
-      const id = req.params.id;
-      const filter = { _id: new ObjectId(id) };
-      await productsCollection.deleteOne(filter);
-      await tShirtCollection.deleteOne(filter);
-      res.status(200).json({
-        status: "success",
-        message: "successfully delete your product!✅"
-      })
-    });
-    app.delete("/rim-mugs/:id", async (req, res) => {
-      const id = req.params.id;
-      const filter = { _id: new ObjectId(id) };
-      await productsCollection.deleteOne(filter);
-      await rimMugsCollection.deleteOne(filter);
-      res.status(200).json({
-        status: "success",
-        message: "successfully delete your product!✅"
-      })
-    });
-    app.delete("/magic-mirror/:id", async (req, res) => {
-      const id = req.params.id;
-      const filter = { _id: new ObjectId(id) };
-      await productsCollection.deleteOne(filter);
-      await magicMirrorCollection.deleteOne(filter);
-      res.status(200).json({
-        status: "success",
-        message: "successfully delete your product!✅"
-      })
-    });
 
 
-
+    // Edit Product ==> ID
     app.patch("/product/:id", async (req, res) => {
       const productID = req.params.id;
       const patchData = req.body;
@@ -529,27 +429,27 @@ async function run() {
 
 
 
-    // update products by particular _id data...🛒
-    app.patch("/update-product/:id", async (req, res) => {
-      const productID = req.params.id;
-      const patchData = req.body;
-      console.log(productID, patchData);
-      const result = await productsCollection.updateOne(
-        { _id: new ObjectId(productID) },
-        {
-          $set: patchData,
-        }
-      );
-      console.log(result);
-      res.send(result);
-    });
-    // delete products by particular _id to database...❌
-    app.delete("/delete-product/:id", async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: new ObjectId(id) };
-      const result = await productsCollection.deleteOne(query);
-      res.send(result);
-    });
+    // // update products by particular _id data...🛒
+    // app.patch("/update-product/:id", async (req, res) => {
+    //   const productID = req.params.id;
+    //   const patchData = req.body;
+    //   console.log(productID, patchData);
+    //   const result = await productsCollection.updateOne(
+    //     { _id: new ObjectId(productID) },
+    //     {
+    //       $set: patchData,
+    //     }
+    //   );
+    //   console.log(result);
+    //   res.send(result);
+    // });
+    // // delete products by particular _id to database...❌
+    // app.delete("/delete-product/:id", async (req, res) => {
+    //   const id = req.params.id;
+    //   const query = { _id: new ObjectId(id) };
+    //   const result = await productsCollection.deleteOne(query);
+    //   res.send(result);
+    // });
   } catch (error) {
     console.log("Error", error);
   } finally {
